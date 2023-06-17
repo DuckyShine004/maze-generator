@@ -28,7 +28,7 @@ from utils.maze import Maze
 
 def main() -> None:
     """
-    The main function for testing.
+    The main function for testing the maze generator.
     """
 
     rows = 10
