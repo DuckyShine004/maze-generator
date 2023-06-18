@@ -3,97 +3,191 @@ from collections import deque
 
 from random import randint
 
-from typing import List, Tuple
+from typing import List, Set, Tuple
 
 from utils.tostring import ToString
 
 class Maze:
+    """
+    The Maze class is an object created to call useful functions which
+    are important for generating a maze. The randomized depth first
+    search algorithm is used to generate the maze.
 
-	def __init__(self, rows: int, cols: int):
-		self.__rows = rows
-		self.__cols = cols
+    Keywords:
+    rows - the height of the maze.
+    cols - the width of the maze.
 
-		self.__path = []
+    Attributes:
+    __rows - a private field copy of rows.
+    __cols - a private field copy of cols.
+    __path - a private field list which stores the path of the generated maze.
+    """
 
-	def dfs(self, u: int, v: int, visited: List[Tuple[int, int]]):
-		stack = deque()
+    def __init__(self, rows: int, cols: int) -> None:
+        self.__rows = rows
+        self.__cols = cols
 
-		node = (u, v)
+        self.__path = []
 
-		stack.append(node)
-		visited.add(node)
+    def dfs(self, u: int, v: int, visited: Set[Tuple[int, int]]) -> None:
+        """
+        Create a path using the randomized depth first search algorithm.
+        Although unintuitive, we will use a y-x coordinate system.
 
-		while (stack):
-			node = stack[-1]
-			self.add_to_path(node)
+        Keyword:
+        u - the starting y coordinate.
+        v - the strating x coordinate.
+        visited - a set of visited nodes.
+        """
 
-			neighbors = self.get_neighbors(node, visited)
+        stack = deque()
 
-			if (neighbors):
-				neighbor = neighbors[randint(0, len(neighbors) - 1)]
+        node = (u, v)
 
-				stack.append(neighbor)
-				visited.add(neighbor)
-			else:
-				stack.pop()
+        stack.append(node)
+        visited.add(node)
 
-	def get_neighbors(self, node: Tuple[int, int], visited: List[Tuple[int, int]]):
-		neighbors = []
+        while stack:
+            node = stack[-1]
+            self.add_to_path(node)
 
-		u, v = node
+            neighbors = self.get_neighbors(node, visited)
 
-		point1 = (u + 1, v)
-		point2 = (u - 1, v)
-		point3 = (u, v + 1)
-		point4 = (u, v - 1)
+            if neighbors:
+                neighbor = neighbors[randint(0, len(neighbors) - 1)]
 
-		if (self.check_neighbor(point1, visited)):
-			neighbors.append(point1)
+                stack.append(neighbor)
+                visited.add(neighbor)
+            else:
+                stack.pop()
 
-		if (self.check_neighbor(point2, visited)):
-			neighbors.append(point2)
+    def add_to_path(self, node: Tuple[int, int]) -> None:
+        """
+        Adds the passed node to the path.
+        """
 
-		if (self.check_neighbor(point3, visited)):
-			neighbors.append(point3)
+        self.__path.append(node)
 
-		if (self.check_neighbor(point4, visited)):
-			neighbors.append(point4)
+    def clear_path(self) -> None:
+        """
+        Clear the path to create a new path; we want to create a new maze.
+        """
 
-		return neighbors
+        self.__path.clear()
 
-	def check_neighbor(self, point: Tuple[int, int], visited: List[Tuple[int, int]]):
-		u, v = point
+    def get_path(self) -> List[Tuple[int, int]]:
+        """
+        Return the path, that is, the list of traversed nodes.
+        """
 
-		if (point not in visited):
-			if (self.check_horizontal(v) and self.check_vertical(u)):
-				return True
+        return self.__path
 
-		return False
+    def get_neighbors(
+        self, node: Tuple[int, int], visited: Set[Tuple[int, int]]
+    ) -> List[Tuple[int, int]]:
+        """
+        Get all available adjacent neighbor nodes given the current node.
 
-	def check_horizontal(self, v: int):
-		return True if (v >= 0 and v < self.__cols) else False
+        Return the list of all available adjacent neighbor nodes.
 
-	def check_vertical(self, u: int):
-		return True if (u >= 0 and u < self.__rows) else False
+        Keywords:
+        node - a tuple of y-x coordinate.
+        visited- the set of visited nodes.
+        """
 
-	def add_to_path(self, node: Tuple[int, int]):
-		self.__path.append(node)
+        neighbors = []
 
-	def clear_path(self):
-		self.__path.clear()
+        u, v = node
 
-	def get_path(self):
-		return self.__path
+        node_s = (u + 1, v)
+        node_n = (u - 1, v)
+        node_e = (u, v + 1)
+        node_w = (u, v - 1)
 
-	def generate(self):
-		self.clear_path()
+        if self.check_neighbor(node_s, visited):
+            neighbors.append(node_s)
 
-		u = 0
-		v = 0
+        if self.check_neighbor(node_n, visited):
+            neighbors.append(node_n)
 
-		visited = set()
+        if self.check_neighbor(node_e, visited):
+            neighbors.append(node_e)
 
-		return self.dfs(u, v, visited)	
+        if self.check_neighbor(node_w, visited):
+            neighbors.append(node_w)
 
-	def to_string(self, delay: bool = False):
-		ToString(self.__rows, self.__cols).create_string(self.get_path(), delay)
+        return neighbors
+
+    def check_neighbor(
+        self, node: Tuple[int, int], visited: Set[Tuple[int, int]]
+    ) -> bool:
+        """
+        Check if the queried neighbor node is available. It is available if
+        it has not been visited yet or it is within the width and height limit.
+
+        Return a Boolean value, based on if the queried neighbor node is available.
+
+        Keywords:
+        node - a tuple of y-x coordinate.
+        visited - the set of visited nodes.
+        """
+
+        y, x = node
+
+        if node not in visited:
+            if self.check_horizontal(x) and self.check_vertical(y):
+                return True
+
+        return False
+
+    def check_horizontal(self, x: int) -> bool:
+        """
+        Check if the x coordinate is within the width of the maze.
+
+        Return a Boolean value based on the consequent condition.
+
+        Keywords:
+        x - the passed x coordinate value.
+        """
+
+        return True if x >= 0 and x < self.__cols else False
+
+    def check_vertical(self, y: int) -> bool:
+        """
+        Check if the y coordinate is within the width of the maze.
+
+        Return a Boolean value based on the consequent condition.
+
+        Keywords:
+        y - the passed y coordinate value.
+        """
+
+        return True if y >= 0 and y < self.__rows else False
+
+    def generate(self) -> None:
+        """
+        Upon function call; generates a maze.
+        """
+
+        self.clear_path()
+
+        y = 0
+        x = 0
+
+        visited = set()
+
+        self.dfs(y, x, visited)
+
+    def to_string(self, delay: bool = False) -> None:
+        """
+        Displays the current generated maze in the form of concatenated strings.
+
+        WARNING:
+        the generate() function must be called first.
+
+        Keywords:
+        delay - a Boolean value that decides whether the user wants to see the
+        maze creation at each iteration. The default value is False.
+        """
+
+        ToString(self.__rows, self.__cols).create_string(self.get_path(), delay)
