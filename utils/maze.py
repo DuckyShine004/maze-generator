@@ -82,9 +82,7 @@ class Maze:
 
         return self.__path
 
-    def get_neighbors(
-        self, node: Tuple[int, int], visited: Set[Tuple[int, int]]
-    ) -> List[Tuple[int, int]]:
+    def get_neighbors(self, node: Tuple[int, int], visited: Set[Tuple[int, int]]) -> List[Tuple[int, int]]:
         """
         Get all available adjacent neighbor nodes given the current node.
 
@@ -118,9 +116,7 @@ class Maze:
 
         return neighbors
 
-    def check_neighbor(
-        self, node: Tuple[int, int], visited: Set[Tuple[int, int]]
-    ) -> bool:
+    def check_neighbor(self, node: Tuple[int, int], visited: Set[Tuple[int, int]]) -> bool:
         """
         Check if the queried neighbor node is available. It is available if
         it has not been visited yet or it is within the width and height limit.
