@@ -8,8 +8,8 @@ def main() -> None:
     The main function for testing the maze generator.
     """
 
-    rows = 10
-    cols = 10
+    rows = int(input("Enter the width (rows) of the maze: "))
+    cols = int(input("Enter the height (columns) of the maze: "))
 
     maze = Maze(rows, cols)
 
