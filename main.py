@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #!/usr/bin/python3
 
 from utils.tostring import ToString
@@ -20,26 +19,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-=======
-#!/usr/bin/python3
-
-from utils.tostring import ToString
-from utils.maze import Maze
-
-def main() -> None:
-    """
-    The main function for testing the maze generator.
-    """
-
-    rows = 10
-    cols = 10
-
-    maze = Maze(rows, cols)
-
-    maze.generate()
-
-    maze.to_string(delay=False)
-
-if __name__ == "__main__":
-    main()
->>>>>>> cbc0b70 (Added annotations to main.py)

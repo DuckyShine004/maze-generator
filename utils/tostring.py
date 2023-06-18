@@ -4,7 +4,6 @@ from typing import List, Tuple
 
 from time import sleep
 
-
 class ToString:
     """
     The ToString class is an object that is useful for calling string related
@@ -95,4 +94,5 @@ class ToString:
         col - the passed column value.
         string - the wall (in the form of a string) to be removed.
         """
+
         self.__to_string_maze[row][col] = self.__to_string_maze[row][col].replace(string, " ")
