@@ -29,7 +29,7 @@ class Maze:
 
         self.__path = []
 
-    def dfs(self, u: int, v: int, visited: Set[Tuple[int, int]]) -> None:
+    def depth_first_search(self, u: int, v: int, visited: Set[Tuple[int, int]]) -> None:
         """
         Create a path using the randomized depth first search algorithm.
         Although unintuitive, we will use a y-x coordinate system.
@@ -172,7 +172,7 @@ class Maze:
 
         visited = set()
 
-        self.dfs(y, x, visited)
+        self.depth_first_search(y, x, visited)
 
     def to_string(self, delay: bool = False) -> None:
         """
