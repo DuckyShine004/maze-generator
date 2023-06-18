@@ -1,15 +1,21 @@
+#!/usr/bin/python3
+
 from utils.tostring import ToString
 from utils.maze import Maze
 
-def main():
-	rows = 10
-	cols = 10
+def main() -> None:
+    """
+    The main function for testing the maze generatordsgsdgfsd .
+    """
 
-	maze = Maze(rows, cols)
+    rows = 10
+    cols = 10
 
-	maze.generate()
+    maze = Maze(rows, cols)
 
-	maze.to_string(delay = True)
+    maze.generate()
 
-if (__name__ == "__main__"):
-	main()
+    maze.to_string(delay=False)
+
+if __name__ == "__main__":
+    main()
