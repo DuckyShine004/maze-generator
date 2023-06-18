@@ -46,6 +46,11 @@ class ToString:
     def create_string(self, path: List[Tuple[int, int]], delay: bool = False) -> None:
         """
         Create the maze in the form of a string. 
+
+        Keywords:
+        path - the list of traversed nodes.
+        delay - a Boolean value that decides whether the user wants to see the
+        maze creation at each iteration. The default value is False.
         """
 
         for i in range(len(path) - 1):
