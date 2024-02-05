@@ -76,6 +76,9 @@ class Graph:
             ux, uy = u
             vx, vy = v
 
+            self.cells[ux][uy].is_current_cell = False
+            self.cells[vx][vy].is_current_cell = True
+
             if vx - ux > 0:
                 self.remove_wall(u, v, 1)
 
@@ -87,6 +90,8 @@ class Graph:
 
             if vy - uy < 0:
                 self.remove_wall(u, v, 0)
+
+            yield
 
     def is_valid(self, node, visited):
         x, y = node

@@ -11,16 +11,32 @@ class App:
         self.surface = pygame.display.set_mode((WIDTH, HEIGHT))
 
         self.graph = Graph()
+        self.generator = None
+        self.previous_time = None
+        self.delay = 100
 
     def run(self):
         while self.is_running:
+            pygame.time.Clock().tick(60)
             self.surface.fill(SURFACE_COLOR)
             self.__handle_events()
+
+            current_time = pygame.time.get_ticks()
+
+            if self.generator and (
+                self.previous_time is None
+                or (current_time - self.previous_time >= self.delay)
+            ):
+                try:
+                    next(self.generator)
+                    self.previous_time = current_time
+                except StopIteration:
+                    self.generator = None
+                    self.previous_time = None
 
             self.graph.render(self.surface)
 
             pygame.display.flip()
-            pygame.time.Clock().tick(60)
 
     def __handle_events(self):
         for event in pygame.event.get():
@@ -38,4 +54,4 @@ class App:
     def __handle_mouse_events(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN:
             self.graph.reset()
-            self.graph.generate()
+            self.generator = self.graph.generate()
