@@ -1,4 +1,5 @@
 import pygame
+import threading
 
 from src.models.graph.graph import Graph
 from src.constants.constants import SURFACE_COLOR, WIDTH, HEIGHT
@@ -10,7 +11,6 @@ class App:
         self.surface = pygame.display.set_mode((WIDTH, HEIGHT))
 
         self.graph = Graph()
-        self.graph.generate()
 
     def run(self):
         while self.is_running:
@@ -18,7 +18,9 @@ class App:
             self.__handle_events()
 
             self.graph.render(self.surface)
+
             pygame.display.flip()
+            pygame.time.Clock().tick(60)
 
     def __handle_events(self):
         for event in pygame.event.get():
@@ -26,8 +28,14 @@ class App:
                 self.is_running = False
 
             self.__handle_keyboard_events(event)
+            self.__handle_mouse_events(event)
 
     def __handle_keyboard_events(self, event):
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
                 self.is_running = False
+
+    def __handle_mouse_events(self, event):
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            self.graph.reset()
+            self.graph.generate()

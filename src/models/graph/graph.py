@@ -1,4 +1,5 @@
 import random
+import pygame
 
 from collections import deque
 from src.utilities.utility import Utility
@@ -9,6 +10,20 @@ from src.models.objects.cell import Cell
 
 class Graph:
     def __init__(self):
+        self.cells = [
+            [
+                Cell(
+                    x * CELL_OFFSET,
+                    y * CELL_OFFSET,
+                    x == MAZE_WIDTH - 1,
+                    y == MAZE_HEIGHT - 1,
+                )
+                for y in range(MAZE_HEIGHT)
+            ]
+            for x in range(MAZE_WIDTH)
+        ]
+
+    def reset(self):
         self.cells = [
             [
                 Cell(
@@ -34,19 +49,15 @@ class Graph:
             x, y = u
 
             v = None
-            d = None
 
             visited[x][y] = True
             random.shuffle(directions)
 
-            for (dx, dy), direction in directions:
+            for dx, dy in directions:
                 v = (x + dx, y + dy)
-                d = direction
 
                 if not self.is_valid(v, visited):
                     v = None
-                    d = None
-
                     continue
 
                 break
@@ -55,12 +66,27 @@ class Graph:
 
             if v:
                 stack.append(v)
-                self.remove_wall(u, v, d)
             else:
                 stack.pop()
 
-        for x, y in path:
-            self.cells[x][y].is_current_cell = True
+        for i in range(1, len(path)):
+            u = path[i - 1]
+            v = path[i]
+
+            ux, uy = u
+            vx, vy = v
+
+            if vx - ux > 0:
+                self.remove_wall(u, v, 1)
+
+            if vx - ux < 0:
+                self.remove_wall(u, v, 3)
+
+            if vy - uy > 0:
+                self.remove_wall(u, v, 2)
+
+            if vy - uy < 0:
+                self.remove_wall(u, v, 0)
 
     def is_valid(self, node, visited):
         x, y = node
