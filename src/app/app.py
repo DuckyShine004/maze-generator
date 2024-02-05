@@ -1,27 +1,32 @@
 import pygame
 
-from src.constants.constants import WIDTH, HEIGHT
+from src.models.objects.cell import Cell
+from src.constants.constants import SURFACE_COLOR, WIDTH, HEIGHT
 
 
 class App:
     def __init__(self):
         self.is_running = True
-        self.window = pygame.display.set_mode((WIDTH, HEIGHT))
+        self.surface = pygame.display.set_mode((WIDTH, HEIGHT))
+
+        self.cell = Cell(0, 0)
 
     def run(self):
         while self.is_running:
-            self.handle_events()
+            self.surface.fill(SURFACE_COLOR)
+            self.__handle_events()
 
+            self.cell.render(self.surface)
             pygame.display.flip()
 
-    def handle_events(self):
+    def __handle_events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.is_running = False
 
-            self.handle_keyboard_events(event)
+            self.__handle_keyboard_events(event)
 
-    def handle_keyboard_events(self, event):
+    def __handle_keyboard_events(self, event):
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
                 self.is_running = False

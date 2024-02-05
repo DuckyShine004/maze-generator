@@ -1,3 +1,4 @@
+import os
 import pygame
 
 from src.app.app import App
