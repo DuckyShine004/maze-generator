@@ -1,7 +1,6 @@
 import pygame
 
 from src.models.graph.graph import Graph
-from src.models.objects.cell import Cell
 from src.constants.constants import SURFACE_COLOR, WIDTH, HEIGHT
 
 
@@ -12,13 +11,32 @@ class App:
 
         self.graph = Graph()
 
+        self.generator = None
+        self.previous_time = None
+        self.delay = 100
+
     def run(self):
         while self.is_running:
             self.surface.fill(SURFACE_COLOR)
             self.__handle_events()
 
+            current_time = pygame.time.get_ticks()
+
+            if self.generator and (
+                self.previous_time is None
+                or (current_time - self.previous_time >= self.delay)
+            ):
+                try:
+                    next(self.generator)
+                    self.previous_time = current_time
+                except StopIteration:
+                    self.generator = None
+                    self.previous_time = None
+
             self.graph.render(self.surface)
+
             pygame.display.flip()
+            pygame.time.Clock().tick(60)
 
     def __handle_events(self):
         for event in pygame.event.get():
@@ -26,8 +44,14 @@ class App:
                 self.is_running = False
 
             self.__handle_keyboard_events(event)
+            self.__handle_mouse_events(event)
 
     def __handle_keyboard_events(self, event):
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
                 self.is_running = False
+
+    def __handle_mouse_events(self, event):
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            self.graph.reset()
+            self.generator = self.graph.generate()

@@ -9,6 +9,10 @@ from src.constants.constants import (
 
 class Cell(object):
     def __init__(self, x, y, is_right_most_wall=False, is_bottom_most_wall=False):
+        self.x = x
+        self.y = y
+        self.is_current_cell = False
+
         horizontal_wall_offset = VERTICAL_WALL_SIZE[1] - HORIZONTAL_WALL_SIZE[1]
         vertical_wall_offset = HORIZONTAL_WALL_SIZE[0] - VERTICAL_WALL_SIZE[0]
 
@@ -26,7 +30,10 @@ class Cell(object):
         ]
 
     def render(self, surface):
-        for wall, is_wall_visible in self.cells:
+        if self.is_current_cell:
+            pygame.draw.rect(surface, (255, 0, 0), pygame.Rect(self.x, self.y, 60, 60))
+
+        for wall, is_wall_visible in self.walls:
             if not is_wall_visible:
                 continue
 
