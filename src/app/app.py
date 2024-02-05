@@ -1,6 +1,6 @@
 import pygame
 
-from src.models.objects.cell import Cell
+from src.models.graph.graph import Graph
 from src.constants.constants import SURFACE_COLOR, WIDTH, HEIGHT
 
 
@@ -9,14 +9,15 @@ class App:
         self.is_running = True
         self.surface = pygame.display.set_mode((WIDTH, HEIGHT))
 
-        self.cell = Cell(0, 0)
+        self.graph = Graph()
+        self.graph.generate()
 
     def run(self):
         while self.is_running:
             self.surface.fill(SURFACE_COLOR)
             self.__handle_events()
 
-            self.cell.render(self.surface)
+            self.graph.render(self.surface)
             pygame.display.flip()
 
     def __handle_events(self):
