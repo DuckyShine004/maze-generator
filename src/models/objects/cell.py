@@ -1,6 +1,10 @@
 import pygame
 
-from src.constants.constants import WALL_COLOR, VERTICAL_WALL_SIZE, HORIZONTAL_WALL_SIZE
+from src.constants.constants import (
+    WALL_COLOR,
+    VERTICAL_WALL_SIZE,
+    HORIZONTAL_WALL_SIZE,
+)
 
 
 class Cell(object):
@@ -12,7 +16,7 @@ class Cell(object):
         horizontal_wall_offset = VERTICAL_WALL_SIZE[1] - HORIZONTAL_WALL_SIZE[1]
         vertical_wall_offset = HORIZONTAL_WALL_SIZE[0] - VERTICAL_WALL_SIZE[0]
 
-        self.walls = [
+        self.cells = [
             [pygame.Rect(x, y, *HORIZONTAL_WALL_SIZE), True],
             [
                 pygame.Rect(x + vertical_wall_offset, y, *VERTICAL_WALL_SIZE),
