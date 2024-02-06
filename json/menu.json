@@ -4,7 +4,21 @@
             "position": [100, 100],
             "images": {
                 "default": "assets/ui/buttons/button0.png"
-            }
+            },
+            "type": "default",
+            "static": false,
+            "speed": 10
+        }
+    ],
+    "containers": [
+        {
+            "position": [100, 100],
+            "images": {
+                "default": "assets/ui/containers/container0.png"
+            },
+            "type": "default",
+            "static": false,
+            "speed": 10
         }
     ]
 }

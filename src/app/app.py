@@ -1,7 +1,8 @@
 import pygame
 
 from src.models.graph.graph import Graph
-from src.constants.constants import SURFACE_COLOR, WIDTH, HEIGHT
+from src.constants.constants import SURFACE_COLOR, WIDTH, HEIGHT, MENU
+from src.ui.ui import UI
 
 
 class App:
@@ -10,10 +11,11 @@ class App:
         self.surface = pygame.display.set_mode((WIDTH, HEIGHT))
 
         self.graph = Graph()
+        self.ui = UI(MENU)
 
         self.generator = None
         self.previous_time = None
-        self.delay = 100
+        self.delay = 10
 
     def run(self):
         while self.is_running:
@@ -33,6 +35,7 @@ class App:
                     self.generator = None
                     self.previous_time = None
 
+            self.ui.render(self.surface)
             self.graph.render(self.surface)
 
             pygame.display.flip()

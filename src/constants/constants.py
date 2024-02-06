@@ -17,5 +17,7 @@ CELL_OFFSET = 60
 # MAZE
 MAZE_WIDTH = 32
 MAZE_HEIGHT = 18
-
 DIRECTIONS = [(0, -1), (1, 0), (0, 1), (-1, 0)]
+
+# UI
+MENU = "../../json/menu.json"

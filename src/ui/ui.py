@@ -6,15 +6,27 @@ class UI:
     def __init__(self, path):
         self.data = Utility.get_json_data(path)
         self.elements = []
-        self.buttons = []
 
         self.initialize()
 
     def initialize(self):
-        for button in self.data["buttons"]:
-            self.buttons.append(Button(button["position"], button["images"]))
+        for elements in self.data.keys():
+            self.create_elements(elements)
 
-        self.elements.append(self.buttons)
+    def create_elements(self, elements):
+        match elements:
+            case "buttons":
+                self.create_buttons()
+            case _:
+                pass
+
+    def create_buttons(self):
+        buttons = []
+
+        for button in self.data["buttons"]:
+            buttons.append(Button(**button))
+
+        self.elements.append(buttons)
 
     def render(self, surface):
         for element in self.elements:
