@@ -1,24 +1,30 @@
 {
     "buttons": [
         {
+            "id": "btn1",
             "position": [1856, 508],
-            "target_position": [1656, 100],
+            "target_position": [1106, 100],
+            "related_elements": ["ctn1"],
             "images": {
                 "default": "assets/ui/buttons/slide1.png",
                 "flipped": "assets/ui/buttons/slide0.png"
             },
             "type": "slide",
-            "speed": 10
+            "speed": 20
         }
     ],
     "containers": [
         {
-            "position": [100, 100],
+            "id": "ctn1",
+            "position": [1930, 30],
+            "target_position": [1180, 30],
+            "related_elements": [],
             "images": {
-                "default": "assets/ui/containers/container0.png"
+                "default": "assets/ui/containers/container3.png",
+                "flipped": "assets/ui/containers/container3.png"
             },
-            "type": "default",
-            "speed": 10
+            "type": "slide",
+            "speed": 20
         }
     ]
 }

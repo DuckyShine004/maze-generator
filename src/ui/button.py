@@ -4,8 +4,8 @@ from src.ui.element import Element
 
 
 class Button(Element):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+    def __init__(self, ui, **kwargs):
+        super().__init__(ui, **kwargs)
 
     def update(self, event):
         self.on_hover()
@@ -21,8 +21,7 @@ class Button(Element):
 
         match self.type:
             case "slide":
-                self.is_moving = True
-                self.is_moving_to_target_position ^= True
+                self.on_move()
             case _:
                 pass
 
