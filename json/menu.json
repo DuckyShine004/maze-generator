@@ -1,0 +1,10 @@
+{
+    "buttons": [
+        {
+            "position": [100, 100],
+            "images": {
+                "default": "assets/ui/buttons/button0.png"
+            }
+        }
+    ]
+}
