@@ -28,6 +28,11 @@ class UI:
 
         self.elements.append(buttons)
 
+    def update(self, event):
+        for element in self.elements:
+            for sub_element in element:
+                sub_element.update(event)
+
     def render(self, surface):
         for element in self.elements:
             for sub_element in element:

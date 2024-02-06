@@ -16,6 +16,7 @@ class App:
         self.generator = None
         self.previous_time = None
         self.delay = 10
+        self.event = None
 
     def run(self):
         while self.is_running:
@@ -35,14 +36,23 @@ class App:
                     self.generator = None
                     self.previous_time = None
 
-            self.ui.render(self.surface)
-            self.graph.render(self.surface)
+            self.update()
+            self.render()
 
             pygame.display.flip()
             pygame.time.Clock().tick(60)
 
+    def update(self):
+        self.ui.update(self.event)
+
+    def render(self):
+        self.graph.render(self.surface)
+        self.ui.render(self.surface)
+
     def __handle_events(self):
         for event in pygame.event.get():
+            self.event = event
+
             if event.type == pygame.QUIT:
                 self.is_running = False
 

@@ -1,12 +1,13 @@
 {
     "buttons": [
         {
-            "position": [100, 100],
+            "position": [1856, 508],
+            "target_position": [1656, 100],
             "images": {
-                "default": "assets/ui/buttons/button0.png"
+                "default": "assets/ui/buttons/slide1.png",
+                "flipped": "assets/ui/buttons/slide0.png"
             },
-            "type": "default",
-            "static": false,
+            "type": "slide",
             "speed": 10
         }
     ],
@@ -17,7 +18,6 @@
                 "default": "assets/ui/containers/container0.png"
             },
             "type": "default",
-            "static": false,
             "speed": 10
         }
     ]
