@@ -1,5 +1,4 @@
 import pygame
-from pygame.constants import SYSTEM_CURSOR_ARROW, SYSTEM_CURSOR_HAND
 from src.ui.element import Element
 
 
@@ -8,8 +7,6 @@ class Button(Element):
         super().__init__(ui, **kwargs)
 
     def update(self, event):
-        self.on_hover()
-
         if event.type == pygame.MOUSEBUTTONDOWN:
             self.on_click(event)
 
@@ -24,10 +21,3 @@ class Button(Element):
                 self.on_move()
             case _:
                 pass
-
-    def on_hover(self):
-        if self.rect.collidepoint(pygame.mouse.get_pos()):
-            pygame.mouse.set_cursor(SYSTEM_CURSOR_HAND)
-            return
-
-        pygame.mouse.set_cursor(SYSTEM_CURSOR_ARROW)

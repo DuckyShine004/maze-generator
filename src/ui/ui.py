@@ -1,3 +1,7 @@
+import pygame
+
+from pygame.constants import SYSTEM_CURSOR_ARROW, SYSTEM_CURSOR_HAND
+
 from src.utilities.utility import Utility
 from src.ui.button import Button
 from src.ui.container import Container
@@ -31,7 +35,25 @@ class UI:
         for container in self.data["containers"]:
             self.elements.append(Container(self, **container))
 
+    def handle_hover(self):
+        is_cursor_on_element = False
+
+        for element in self.elements:
+            if not isinstance(element, Button):
+                break
+
+            if element.is_hovered():
+                is_cursor_on_element = True
+
+        if is_cursor_on_element:
+            pygame.mouse.set_cursor(SYSTEM_CURSOR_HAND)
+            return
+
+        pygame.mouse.set_cursor(SYSTEM_CURSOR_ARROW)
+
     def update(self, event):
+        self.handle_hover()
+
         for element in self.elements:
             element.update(event)
 

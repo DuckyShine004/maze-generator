@@ -1,3 +1,5 @@
+import pygame
+
 from src.utilities.utility import Utility
 
 
@@ -22,6 +24,9 @@ class Element:
                 if element.id == element_id:
                     element.on_move()
 
+    def is_hovered(self):
+        return self.rect.collidepoint(pygame.mouse.get_pos())
+
     def on_move(self):
         self.is_moving = True
         self.is_moving_to_target_position ^= True
@@ -38,7 +43,7 @@ class Element:
                 if self.rect.x <= self.target_position[0]:
                     self.rect.x = self.target_position[0]
                     self.is_moving = False
-                    self.current_image = self.images["flipped"]
+                    self.current_image = self.images.get("flipped", self.current_image)
         else:
             if self.rect.x < self.start_position[0]:
                 self.rect.x += self.speed
