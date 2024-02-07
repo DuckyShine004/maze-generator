@@ -9,28 +9,28 @@ class Slider(Element):
         super().__init__(app, **kwargs)
 
         self.width = kwargs["width"]
-        self.radius = self.rect.w // 2
+        self.radius = self.visual.rect.w // 2
 
-        self.min = self.target_position[0]
+        self.min = self.moveable.target[0]
         self.max = self.min + kwargs["length"]
 
         self.is_dragging = False
 
+    def move_slider(self, event):
+        position = event.pos[0] - self.radius
+
+        self.visual.rect.x = Utility.clamp(position, self.min, self.max)
+        self.moveable.start[0] = self.visual.rect.x + self.width
+        self.moveable.target[0] = self.visual.rect.x
+
     def on_click(self, event):
-        if self.is_moving:
+        if self.moveable.is_moving:
             return
 
-        if not self.rect.collidepoint(event.pos):
+        if not self.visual.rect.collidepoint(event.pos):
             return
 
         self.is_dragging = True
-
-    def update(self, event):
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            self.on_click(event)
-
-        self.on_drag(event)
-        self.on_slide()
 
     def on_drag(self, event):
         if not self.is_dragging:
@@ -45,9 +45,9 @@ class Slider(Element):
 
         self.move_slider(event)
 
-    def move_slider(self, event):
-        position = event.pos[0] - self.radius
+    def update(self, event):
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            self.on_click(event)
 
-        self.rect.x = Utility.clamp(position, self.min, self.max)
-        self.start_position[0] = self.rect.x + self.width
-        self.target_position[0] = self.rect.x
+        self.on_drag(event)
+        self.on_slide()
