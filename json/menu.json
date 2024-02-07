@@ -4,7 +4,7 @@
             "id": "btn1",
             "position": [1856, 508],
             "target_position": [1106, 508],
-            "related_elements": [
+            "children": [
                 "ctn1",
                 "sld1",
                 "btn2",
@@ -16,8 +16,7 @@
                 "btn8"
             ],
             "images": {
-                "default": "assets/ui/buttons/slide1.png",
-                "flipped": "assets/ui/buttons/slide0.png"
+                "default": "assets/ui/buttons/slide1.png"
             },
             "type": "slide",
             "speed": 20,
