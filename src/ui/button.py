@@ -13,10 +13,10 @@ class Button(Element):
         self.on_slide()
 
     def on_click(self, event):
-        if self.is_moving:
+        if self.moveable.is_moving:
             return
 
-        if not self.rect.collidepoint(event.pos):
+        if not self.visual.rect.collidepoint(event.pos):
             return
 
         self.on_click_type()
