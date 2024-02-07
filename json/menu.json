@@ -124,6 +124,8 @@
             "id": "sld1",
             "position": [1955, 785],
             "target_position": [1205, 500],
+            "length": 625,
+            "slide_width": 750,
             "images": {
                 "default": "assets/ui/buttons/knob0.png"
             },

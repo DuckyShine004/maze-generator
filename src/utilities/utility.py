@@ -32,3 +32,13 @@ class Utility:
             images[key] = pygame.image.load(path)
 
         return images
+
+    @staticmethod
+    def clamp(value, _min, _max):
+        if value < _min:
+            return _min
+
+        if value > _max:
+            return _max
+
+        return value
