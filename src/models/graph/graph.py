@@ -26,6 +26,7 @@ class Graph:
         self.generator = None
         self.previous_time = None
         self.delay = 10
+        self.algorithm = "dfs"
 
     def reset(self):
         self.cells = [
@@ -41,6 +42,9 @@ class Graph:
             for x in range(MAZE_WIDTH)
         ]
 
+        self.generator = None
+        self.previous_time = None
+
     def update(self):
         current_time = pygame.time.get_ticks()
 
@@ -55,14 +59,42 @@ class Graph:
                 self.generator = None
                 self.previous_time = None
 
-    def generate(self, type="dfs"):
+    def generate(self):
         self.reset()
+        path = None
 
-        match type:
+        match self.algorithm:
             case "dfs":
-                self.generator = self.dfs()
+                path = self.dfs()
             case "binary":
-                self.generator = self.binary()
+                path = self.binary()
+
+        self.generator = self.get_generator(path)
+
+    def get_generator(self, path):
+        for i in range(1, len(path)):
+            u = path[i - 1]
+            v = path[i]
+
+            ux, uy = u
+            vx, vy = v
+
+            self.cells[ux][uy].is_current_cell = False
+            self.cells[vx][vy].is_current_cell = True
+
+            if vx - ux > 0:
+                self.remove_wall(u, v, 1)
+
+            if vx - ux < 0:
+                self.remove_wall(u, v, 3)
+
+            if vy - uy > 0:
+                self.remove_wall(u, v, 2)
+
+            if vy - uy < 0:
+                self.remove_wall(u, v, 0)
+
+            yield
 
     def dfs(self):
         directions = DIRECTIONS.copy()
@@ -96,29 +128,7 @@ class Graph:
             else:
                 stack.pop()
 
-        for i in range(1, len(path)):
-            u = path[i - 1]
-            v = path[i]
-
-            ux, uy = u
-            vx, vy = v
-
-            self.cells[ux][uy].is_current_cell = False
-            self.cells[vx][vy].is_current_cell = True
-
-            if vx - ux > 0:
-                self.remove_wall(u, v, 1)
-
-            if vx - ux < 0:
-                self.remove_wall(u, v, 3)
-
-            if vy - uy > 0:
-                self.remove_wall(u, v, 2)
-
-            if vy - uy < 0:
-                self.remove_wall(u, v, 0)
-
-            yield
+        return path
 
     def binary(self):
         path = deque()

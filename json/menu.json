@@ -4,25 +4,42 @@
             "id": "btn1",
             "position": [1856, 508],
             "target_position": [1106, 508],
-            "related_elements": ["ctn1", "btn2"],
+            "related_elements": ["ctn1", "btn2", "btn3"],
             "images": {
                 "default": "assets/ui/buttons/slide1.png",
                 "flipped": "assets/ui/buttons/slide0.png"
             },
             "type": "slide",
             "speed": 20,
-            "z-buffer": 2
+            "z-buffer": 3
         },
         {
             "id": "btn2",
-            "position": [10, 100],
-            "target_position": [0, 100],
+            "position": [1980, 910],
+            "target_position": [1230, 910],
             "images": {
                 "default": "assets/ui/buttons/button0.png"
             },
-            "type": "dfs",
+            "text": "RESET",
+            "font_path": "assets/fonts/default.ttf",
+            "font_size": 50,
+            "type": "reset",
             "speed": 20,
             "z-buffer": 1
+        },
+        {
+            "id": "btn3",
+            "position": [2330, 910],
+            "target_position": [1580, 910],
+            "images": {
+                "default": "assets/ui/buttons/button0.png"
+            },
+            "text": "GENERATE",
+            "font_path": "assets/fonts/default.ttf",
+            "font_size": 50,
+            "type": "generate",
+            "speed": 20,
+            "z-buffer": 2
         }
     ],
     "containers": [
@@ -35,7 +52,7 @@
             },
             "type": "slide",
             "speed": 20,
-            "z-buffer": 3
+            "z-buffer": 4
         }
     ]
 }

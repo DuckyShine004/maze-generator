@@ -1,6 +1,7 @@
 import pygame
 
 from src.utilities.utility import Utility
+from src.constants.constants import FONT_COLOR, FONT_SIZE
 
 
 class Element:
@@ -13,6 +14,13 @@ class Element:
         self.images = Utility.get_images(kwargs["images"])
         self.current_image = self.images["default"]
         self.rect = self.current_image.get_rect(topleft=kwargs["position"])
+        self.text = kwargs.get("text", "")
+        font_path = kwargs.get("font_path", None)
+        font_size = kwargs.get("font_size", FONT_SIZE)
+        font_color = kwargs.get("font_color", FONT_COLOR)
+        self.font = pygame.font.Font(font_path, font_size)
+        self.text_surface = self.font.render(self.text, True, font_color)
+        self.text_rect = self.text_surface.get_rect(center=self.rect.center)
         self.type = kwargs["type"]
         self.speed = kwargs["speed"]
         self.z_buffer = kwargs["z-buffer"]
@@ -54,5 +62,15 @@ class Element:
                     self.is_moving = False
                     self.current_image = self.images["default"]
 
+        if not self.text:
+            return
+
+        self.text_rect = self.text_surface.get_rect(center=self.rect.center)
+
     def render(self, surface):
         surface.blit(self.current_image, self.rect)
+
+        if not self.text:
+            return
+
+        surface.blit(self.text_surface, self.text_rect)

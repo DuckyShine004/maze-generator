@@ -21,3 +21,7 @@ DIRECTIONS = [(0, -1), (1, 0), (0, 1), (-1, 0)]
 
 # UI
 MENU = "../../json/menu.json"
+
+# FONT
+FONT_COLOR = (255, 255, 255)
+FONT_SIZE = 50
