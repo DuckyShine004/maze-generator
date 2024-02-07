@@ -23,6 +23,10 @@ class Graph:
             for x in range(MAZE_WIDTH)
         ]
 
+        self.generator = None
+        self.previous_time = None
+        self.delay = 10
+
     def reset(self):
         self.cells = [
             [
@@ -37,7 +41,30 @@ class Graph:
             for x in range(MAZE_WIDTH)
         ]
 
-    def generate(self):
+    def update(self):
+        current_time = pygame.time.get_ticks()
+
+        if self.generator and (
+            self.previous_time is None
+            or (current_time - self.previous_time >= self.delay)
+        ):
+            try:
+                next(self.generator)
+                self.previous_time = current_time
+            except StopIteration:
+                self.generator = None
+                self.previous_time = None
+
+    def generate(self, type="dfs"):
+        self.reset()
+
+        match type:
+            case "dfs":
+                self.generator = self.dfs()
+            case "binary":
+                self.generator = self.binary()
+
+    def dfs(self):
         directions = DIRECTIONS.copy()
         start_cell = Utility.get_random_position()
         visited = [[False] * MAZE_HEIGHT for _ in range(MAZE_WIDTH)]
@@ -92,6 +119,15 @@ class Graph:
                 self.remove_wall(u, v, 0)
 
             yield
+
+    def binary(self):
+        path = deque()
+
+        for x in range(MAZE_WIDTH):
+            for y in range(MAZE_HEIGHT):
+                ...
+
+        return path
 
     def is_valid(self, node, visited):
         x, y = node

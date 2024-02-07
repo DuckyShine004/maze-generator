@@ -19,5 +19,5 @@ class Button(Element):
         match self.type:
             case "slide":
                 self.on_move()
-            case "dfs":
-                pass
+            case _:
+                self.app.graph.generate(self.type)
