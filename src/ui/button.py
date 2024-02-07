@@ -19,5 +19,5 @@ class Button(Element):
         match self.type:
             case "slide":
                 self.on_move()
-            case _:
+            case "dfs":
                 pass

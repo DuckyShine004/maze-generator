@@ -10,18 +10,19 @@
                 "flipped": "assets/ui/buttons/slide0.png"
             },
             "type": "slide",
-            "speed": 20
+            "speed": 20,
+            "z-buffer": 2
         },
         {
             "id": "btn2",
             "position": [10, 100],
             "target_position": [0, 100],
-            "related_elements": [],
             "images": {
                 "default": "assets/ui/buttons/button0.png"
             },
-            "type": "slide",
-            "speed": 20
+            "type": "dfs",
+            "speed": 20,
+            "z-buffer": 1
         }
     ],
     "containers": [
@@ -29,12 +30,12 @@
             "id": "ctn1",
             "position": [1930, 30],
             "target_position": [1180, 30],
-            "related_elements": [],
             "images": {
                 "default": "assets/ui/containers/container3.png"
             },
             "type": "slide",
-            "speed": 20
+            "speed": 20,
+            "z-buffer": 3
         }
     ]
 }

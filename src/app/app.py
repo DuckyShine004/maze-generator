@@ -11,7 +11,7 @@ class App:
         self.surface = pygame.display.set_mode((WIDTH, HEIGHT))
 
         self.graph = Graph()
-        self.ui = UI(MENU)
+        self.ui = UI(self, MENU)
 
         self.generator = None
         self.previous_time = None

@@ -8,7 +8,8 @@ from src.ui.container import Container
 
 
 class UI:
-    def __init__(self, path):
+    def __init__(self, app, path):
+        self.app = app
         self.data = Utility.get_json_data(path)
         self.elements = []
 
@@ -27,18 +28,20 @@ class UI:
             case _:
                 pass
 
+        self.elements.sort(key=lambda x: x.z_buffer, reverse=True)
+
     def create_buttons(self):
         for button in self.data["buttons"]:
-            self.elements.append(Button(self, **button))
+            self.elements.append(Button(self.app, **button))
 
     def create_containers(self):
         for container in self.data["containers"]:
-            self.elements.append(Container(self, **container))
+            self.elements.append(Container(self.app, **container))
 
     def handle_hover(self):
         is_cursor_on_element = False
 
-        for element in self.elements:
+        for element in reversed(self.elements):
             if not isinstance(element, Button):
                 break
 
@@ -54,7 +57,7 @@ class UI:
     def update(self, event):
         self.handle_hover()
 
-        for element in self.elements:
+        for element in reversed(self.elements):
             element.update(event)
 
     def render(self, surface):

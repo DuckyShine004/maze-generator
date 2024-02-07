@@ -4,23 +4,24 @@ from src.utilities.utility import Utility
 
 
 class Element:
-    def __init__(self, ui, **kwargs):
-        self.ui = ui
+    def __init__(self, app, **kwargs):
+        self.app = app
         self.id = kwargs["id"]
         self.start_position = kwargs["position"]
         self.target_position = kwargs["target_position"]
-        self.related_elements = kwargs["related_elements"]
+        self.related_elements = kwargs.get("related_elements", [])
         self.images = Utility.get_images(kwargs["images"])
         self.current_image = self.images["default"]
         self.rect = self.current_image.get_rect(topleft=kwargs["position"])
         self.type = kwargs["type"]
         self.speed = kwargs["speed"]
+        self.z_buffer = kwargs["z-buffer"]
         self.is_moving = False
         self.is_moving_to_target_position = False
 
     def move_related_elements(self):
         for element_id in self.related_elements:
-            for element in self.ui.elements:
+            for element in self.app.ui.elements:
                 if element.id == element_id:
                     element.on_move()
 
