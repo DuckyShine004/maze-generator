@@ -21,6 +21,10 @@ MAZE_WIDTH = 32
 MAZE_HEIGHT = 18
 DIRECTIONS = [(0, -1), (1, 0), (0, 1), (-1, 0)]
 
+# GRAPH
+GRAPH_DELAY = 10
+GRAPH_ALGORITHM = "dfs"
+
 # UI
 MENU = "../../json/menu.json"
 
