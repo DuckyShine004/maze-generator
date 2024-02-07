@@ -1,22 +1,19 @@
 import pygame
 
 from src.models.graph.graph import Graph
-from src.constants.constants import SURFACE_COLOR, WIDTH, HEIGHT, MENU
 from src.ui.ui import UI
+from src.constants.constants import SURFACE_COLOR, WIDTH, HEIGHT, MENU
 
 
 class App:
     def __init__(self):
-        self.is_running = True
         self.surface = pygame.display.set_mode((WIDTH, HEIGHT))
 
         self.graph = Graph()
         self.ui = UI(self, MENU)
 
-        self.generator = None
-        self.previous_time = None
-        self.delay = 10
         self.event = None
+        self.is_running = True
 
     def run(self):
         clock = pygame.time.Clock()
@@ -50,5 +47,11 @@ class App:
 
     def handle_keyboard_events(self, event):
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_ESCAPE:
+            self.handle_key_press(event.key)
+
+    def handle_key_press(self, key):
+        match key:
+            case pygame.K_ESCAPE:
                 self.is_running = False
+            case _:
+                pass
