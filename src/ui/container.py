@@ -6,4 +6,4 @@ class Container(Element):
         super().__init__(ui, **kwargs)
 
     def update(self, event):
-        self.handle_slide()
+        self.on_slide()

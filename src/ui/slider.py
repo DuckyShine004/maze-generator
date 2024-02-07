@@ -7,35 +7,47 @@ from src.utilities.utility import Utility
 class Slider(Element):
     def __init__(self, app, **kwargs):
         super().__init__(app, **kwargs)
-        self.is_dragging = False
-        self.offset = 20
-        self.slide_width = kwargs["slide_width"]
-        self.min = self.target_position[0]
+
+        self.width = kwargs["width"]
+        self.radius = self.visual.rect.w // 2
+
+        self.min = self.moveable.target[0]
         self.max = self.min + kwargs["length"]
 
-    def update(self, event):
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            if not self.is_moving and self.rect.collidepoint(event.pos):
-                self.is_dragging = True
+        self.is_dragging = False
 
-        if self.is_dragging:
-            if pygame.mouse.get_pressed()[0]:
-                if event.type == pygame.MOUSEMOTION:
-                    self.rect.x = Utility.clamp(
-                        event.pos[0] - self.offset,
-                        self.min,
-                        self.max,
-                    )
+    def move_slider(self, event):
+        position = event.pos[0] - self.radius
 
-                    self.target_position[0] = self.rect.x
-                    self.start_position[0] = self.rect.x + self.slide_width
-            else:
-                self.is_dragging = False
+        self.visual.rect.x = Utility.clamp(position, self.min, self.max)
+        self.moveable.start[0] = self.visual.rect.x + self.width
+        self.moveable.target[0] = self.visual.rect.x
 
-        self.handle_slide()
+    def on_click(self, event):
+        if self.moveable.is_moving:
+            return
 
-    def on_drag(self, event):
-        if self.is_moving or not self.rect.collidepoint(event.pos):
+        if not self.visual.rect.collidepoint(event.pos):
             return
 
         self.is_dragging = True
+
+    def on_drag(self, event):
+        if not self.is_dragging:
+            return
+
+        if not pygame.mouse.get_pressed()[0]:
+            self.is_dragging = False
+            return
+
+        if event.type != pygame.MOUSEMOTION:
+            return
+
+        self.move_slider(event)
+
+    def update(self, event):
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            self.on_click(event)
+
+        self.on_drag(event)
+        self.on_slide()

@@ -2,9 +2,9 @@
     "buttons": [
         {
             "id": "btn1",
-            "position": [1856, 508],
-            "target_position": [1106, 508],
-            "related_elements": [
+            "start": [1856, 508],
+            "target": [1106, 508],
+            "children": [
                 "ctn1",
                 "sld1",
                 "btn2",
@@ -16,8 +16,7 @@
                 "btn8"
             ],
             "images": {
-                "default": "assets/ui/buttons/slide1.png",
-                "flipped": "assets/ui/buttons/slide0.png"
+                "default": "assets/ui/buttons/slide1.png"
             },
             "type": "slide",
             "speed": 20,
@@ -25,8 +24,8 @@
         },
         {
             "id": "btn2",
-            "position": [1980, 910],
-            "target_position": [1230, 910],
+            "start": [1980, 910],
+            "target": [1230, 910],
             "images": {
                 "default": "assets/ui/buttons/button0.png"
             },
@@ -39,8 +38,8 @@
         },
         {
             "id": "btn3",
-            "position": [2330, 910],
-            "target_position": [1580, 910],
+            "start": [2330, 910],
+            "target": [1580, 910],
             "images": {
                 "default": "assets/ui/buttons/button0.png"
             },
@@ -53,8 +52,8 @@
         },
         {
             "id": "btn4",
-            "position": [1980, 100],
-            "target_position": [1230, 100],
+            "start": [1980, 100],
+            "target": [1230, 100],
             "images": {
                 "default": "assets/ui/buttons/button0.png"
             },
@@ -67,8 +66,8 @@
         },
         {
             "id": "btn5",
-            "position": [2330, 100],
-            "target_position": [1580, 100],
+            "start": [2330, 100],
+            "target": [1580, 100],
             "images": {
                 "default": "assets/ui/buttons/button0.png"
             },
@@ -81,8 +80,8 @@
         },
         {
             "id": "btn6",
-            "position": [1980, 240],
-            "target_position": [1230, 240],
+            "start": [1980, 240],
+            "target": [1230, 240],
             "images": {
                 "default": "assets/ui/buttons/button0.png"
             },
@@ -95,8 +94,8 @@
         },
         {
             "id": "btn7",
-            "position": [2330, 240],
-            "target_position": [1580, 240],
+            "start": [2330, 240],
+            "target": [1580, 240],
             "images": {
                 "default": "assets/ui/buttons/button0.png"
             },
@@ -109,8 +108,8 @@
         },
         {
             "id": "btn8",
-            "position": [1980, 800],
-            "target_position": [1230, 440],
+            "start": [1980, 800],
+            "target": [1230, 440],
             "images": {
                 "default": "assets/ui/buttons/button002.png"
             },
@@ -122,10 +121,10 @@
     "sliders": [
         {
             "id": "sld1",
-            "position": [1955, 785],
-            "target_position": [1205, 500],
+            "start": [1955, 785],
+            "target": [1205, 500],
             "length": 625,
-            "slide_width": 750,
+            "width": 750,
             "images": {
                 "default": "assets/ui/buttons/knob0.png"
             },
@@ -137,8 +136,8 @@
     "containers": [
         {
             "id": "ctn1",
-            "position": [1930, 30],
-            "target_position": [1180, 30],
+            "start": [1930, 30],
+            "target": [1180, 30],
             "images": {
                 "default": "assets/ui/containers/container3.png"
             },
