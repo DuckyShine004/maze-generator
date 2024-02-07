@@ -34,6 +34,9 @@ class Element:
                     element.on_move()
 
     def is_hovered(self):
+        if self.type == "default":
+            return False
+
         return self.rect.collidepoint(pygame.mouse.get_pos())
 
     def on_move(self):

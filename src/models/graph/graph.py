@@ -59,6 +59,9 @@ class Graph:
                 self.generator = None
                 self.previous_time = None
 
+    def set_algorithm(self, algorithm):
+        self.algorithm = algorithm
+
     def generate(self):
         self.reset()
         path = None

@@ -17,6 +17,8 @@ class Button(Element):
             return
 
         match self.type:
+            case "default":
+                pass
             case "slide":
                 self.on_move()
             case "reset":
@@ -24,4 +26,4 @@ class Button(Element):
             case "generate":
                 self.app.graph.generate()
             case _:
-                pass
+                self.app.graph.set_algorithm(self.type)

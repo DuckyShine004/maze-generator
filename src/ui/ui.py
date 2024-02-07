@@ -4,6 +4,7 @@ from pygame.constants import SYSTEM_CURSOR_ARROW, SYSTEM_CURSOR_HAND
 
 from src.utilities.utility import Utility
 from src.ui.button import Button
+from src.ui.slider import Slider
 from src.ui.container import Container
 
 
@@ -25,6 +26,8 @@ class UI:
                 self.create_buttons()
             case "containers":
                 self.create_containers()
+            case "sliders":
+                self.create_sliders()
             case _:
                 pass
 
@@ -37,6 +40,10 @@ class UI:
     def create_containers(self):
         for container in self.data["containers"]:
             self.elements.append(Container(self.app, **container))
+
+    def create_sliders(self):
+        for slider in self.data["sliders"]:
+            self.elements.append(Slider(self.app, **slider))
 
     def handle_hover(self):
         is_cursor_on_element = False

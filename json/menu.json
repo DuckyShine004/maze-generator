@@ -4,14 +4,24 @@
             "id": "btn1",
             "position": [1856, 508],
             "target_position": [1106, 508],
-            "related_elements": ["ctn1", "btn2", "btn3"],
+            "related_elements": [
+                "ctn1",
+                "sld1",
+                "btn2",
+                "btn3",
+                "btn4",
+                "btn5",
+                "btn6",
+                "btn7",
+                "btn8"
+            ],
             "images": {
                 "default": "assets/ui/buttons/slide1.png",
                 "flipped": "assets/ui/buttons/slide0.png"
             },
             "type": "slide",
             "speed": 20,
-            "z-buffer": 3
+            "z-buffer": 1
         },
         {
             "id": "btn2",
@@ -39,6 +49,86 @@
             "font_size": 50,
             "type": "generate",
             "speed": 20,
+            "z-buffer": 1
+        },
+        {
+            "id": "btn4",
+            "position": [1980, 100],
+            "target_position": [1230, 100],
+            "images": {
+                "default": "assets/ui/buttons/button0.png"
+            },
+            "text": "DFS",
+            "font_path": "assets/fonts/default.ttf",
+            "font_size": 50,
+            "type": "dfs",
+            "speed": 20,
+            "z-buffer": 1
+        },
+        {
+            "id": "btn5",
+            "position": [2330, 100],
+            "target_position": [1580, 100],
+            "images": {
+                "default": "assets/ui/buttons/button0.png"
+            },
+            "text": "BINARY",
+            "font_path": "assets/fonts/default.ttf",
+            "font_size": 50,
+            "type": "binary",
+            "speed": 20,
+            "z-buffer": 1
+        },
+        {
+            "id": "btn6",
+            "position": [1980, 240],
+            "target_position": [1230, 240],
+            "images": {
+                "default": "assets/ui/buttons/button0.png"
+            },
+            "text": "KRUSKALS",
+            "font_path": "assets/fonts/default.ttf",
+            "font_size": 50,
+            "type": "kruskals",
+            "speed": 20,
+            "z-buffer": 1
+        },
+        {
+            "id": "btn7",
+            "position": [2330, 240],
+            "target_position": [1580, 240],
+            "images": {
+                "default": "assets/ui/buttons/button0.png"
+            },
+            "text": "PRIMS",
+            "font_path": "assets/fonts/default.ttf",
+            "font_size": 50,
+            "type": "prims",
+            "speed": 20,
+            "z-buffer": 1
+        },
+        {
+            "id": "btn8",
+            "position": [1980, 800],
+            "target_position": [1230, 440],
+            "images": {
+                "default": "assets/ui/buttons/button002.png"
+            },
+            "type": "default",
+            "speed": 20,
+            "z-buffer": 2
+        }
+    ],
+    "sliders": [
+        {
+            "id": "sld1",
+            "position": [1955, 785],
+            "target_position": [1205, 500],
+            "images": {
+                "default": "assets/ui/buttons/knob0.png"
+            },
+            "type": "drag",
+            "speed": 20,
             "z-buffer": 2
         }
     ],
@@ -50,9 +140,9 @@
             "images": {
                 "default": "assets/ui/containers/container3.png"
             },
-            "type": "slide",
+            "type": "default",
             "speed": 20,
-            "z-buffer": 4
+            "z-buffer": 3
         }
     ]
 }
