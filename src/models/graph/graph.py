@@ -23,6 +23,11 @@ class Graph:
             for x in range(MAZE_WIDTH)
         ]
 
+        self.generator = None
+        self.previous_time = None
+        self.delay = 10
+        self.algorithm = "dfs"
+
     def reset(self):
         self.cells = [
             [
@@ -37,7 +42,64 @@ class Graph:
             for x in range(MAZE_WIDTH)
         ]
 
+        self.generator = None
+        self.previous_time = None
+
+    def update(self):
+        current_time = pygame.time.get_ticks()
+
+        if self.generator and (
+            self.previous_time is None
+            or (current_time - self.previous_time >= self.delay)
+        ):
+            try:
+                next(self.generator)
+                self.previous_time = current_time
+            except StopIteration:
+                self.generator = None
+                self.previous_time = None
+
+    def set_algorithm(self, algorithm):
+        self.algorithm = algorithm
+
     def generate(self):
+        self.reset()
+        path = None
+
+        match self.algorithm:
+            case "dfs":
+                path = self.dfs()
+            case "binary":
+                path = self.binary()
+
+        self.generator = self.get_generator(path)
+
+    def get_generator(self, path):
+        for i in range(1, len(path)):
+            u = path[i - 1]
+            v = path[i]
+
+            ux, uy = u
+            vx, vy = v
+
+            self.cells[ux][uy].is_current_cell = False
+            self.cells[vx][vy].is_current_cell = True
+
+            if vx - ux > 0:
+                self.remove_wall(u, v, 1)
+
+            if vx - ux < 0:
+                self.remove_wall(u, v, 3)
+
+            if vy - uy > 0:
+                self.remove_wall(u, v, 2)
+
+            if vy - uy < 0:
+                self.remove_wall(u, v, 0)
+
+            yield
+
+    def dfs(self):
         directions = DIRECTIONS.copy()
         start_cell = Utility.get_random_position()
         visited = [[False] * MAZE_HEIGHT for _ in range(MAZE_WIDTH)]
@@ -69,29 +131,16 @@ class Graph:
             else:
                 stack.pop()
 
-        for i in range(1, len(path)):
-            u = path[i - 1]
-            v = path[i]
+        return path
 
-            ux, uy = u
-            vx, vy = v
+    def binary(self):
+        path = deque()
 
-            self.cells[ux][uy].is_current_cell = False
-            self.cells[vx][vy].is_current_cell = True
+        for x in range(MAZE_WIDTH):
+            for y in range(MAZE_HEIGHT):
+                ...
 
-            if vx - ux > 0:
-                self.remove_wall(u, v, 1)
-
-            if vx - ux < 0:
-                self.remove_wall(u, v, 3)
-
-            if vy - uy > 0:
-                self.remove_wall(u, v, 2)
-
-            if vy - uy < 0:
-                self.remove_wall(u, v, 0)
-
-            yield
+        return path
 
     def is_valid(self, node, visited):
         x, y = node

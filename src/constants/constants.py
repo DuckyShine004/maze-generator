@@ -1,5 +1,5 @@
 # DISPLAY
-SURFACE_COLOR = (255, 255, 255)
+SURFACE_COLOR = (160, 160, 160)
 WIDTH = 1920
 HEIGHT = 1080
 
@@ -17,5 +17,11 @@ CELL_OFFSET = 60
 # MAZE
 MAZE_WIDTH = 32
 MAZE_HEIGHT = 18
-
 DIRECTIONS = [(0, -1), (1, 0), (0, 1), (-1, 0)]
+
+# UI
+MENU = "../../json/menu.json"
+
+# FONT
+FONT_COLOR = (255, 255, 255)
+FONT_SIZE = 50

@@ -1,7 +1,8 @@
 import pygame
 
 from src.models.graph.graph import Graph
-from src.constants.constants import SURFACE_COLOR, WIDTH, HEIGHT
+from src.constants.constants import SURFACE_COLOR, WIDTH, HEIGHT, MENU
+from src.ui.ui import UI
 
 
 class App:
@@ -10,48 +11,44 @@ class App:
         self.surface = pygame.display.set_mode((WIDTH, HEIGHT))
 
         self.graph = Graph()
+        self.ui = UI(self, MENU)
 
         self.generator = None
         self.previous_time = None
-        self.delay = 100
+        self.delay = 10
+        self.event = None
 
     def run(self):
+        clock = pygame.time.Clock()
+
         while self.is_running:
             self.surface.fill(SURFACE_COLOR)
-            self.__handle_events()
+            self.handle_events()
 
-            current_time = pygame.time.get_ticks()
-
-            if self.generator and (
-                self.previous_time is None
-                or (current_time - self.previous_time >= self.delay)
-            ):
-                try:
-                    next(self.generator)
-                    self.previous_time = current_time
-                except StopIteration:
-                    self.generator = None
-                    self.previous_time = None
-
-            self.graph.render(self.surface)
+            self.update()
+            self.render()
 
             pygame.display.flip()
-            pygame.time.Clock().tick(60)
+            clock.tick(60)
 
-    def __handle_events(self):
+    def update(self):
+        self.graph.update()
+        self.ui.update(self.event)
+
+    def render(self):
+        self.graph.render(self.surface)
+        self.ui.render(self.surface)
+
+    def handle_events(self):
         for event in pygame.event.get():
+            self.event = event
+
             if event.type == pygame.QUIT:
                 self.is_running = False
 
-            self.__handle_keyboard_events(event)
-            self.__handle_mouse_events(event)
+            self.handle_keyboard_events(event)
 
-    def __handle_keyboard_events(self, event):
+    def handle_keyboard_events(self, event):
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
                 self.is_running = False
-
-    def __handle_mouse_events(self, event):
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            self.graph.reset()
-            self.generator = self.graph.generate()
