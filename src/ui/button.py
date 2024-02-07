@@ -3,19 +3,25 @@ from src.ui.element import Element
 
 
 class Button(Element):
-    def __init__(self, ui, **kwargs):
-        super().__init__(ui, **kwargs)
+    def __init__(self, app, **kwargs):
+        super().__init__(app, **kwargs)
 
     def update(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN:
             self.on_click(event)
 
-        self.handle_slide()
+        self.on_slide()
 
     def on_click(self, event):
-        if self.is_moving or not self.rect.collidepoint(event.pos):
+        if self.is_moving:
             return
 
+        if not self.rect.collidepoint(event.pos):
+            return
+
+        self.on_click_type()
+
+    def on_click_type(self):
         match self.type:
             case "default":
                 pass
