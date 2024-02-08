@@ -23,11 +23,11 @@ class Text:
         text (str): The message/text.
     """
 
-    def __init__(self, element: "Element", **kwargs):
+    def __init__(self, element: "Element", **kwargs) -> None:
         """Initializes the text component object.
 
         Args:
-            app (App): Singleton instance of app.
+            element (Element): Instance of user interface element.
             **kwargs: Keyworded, variable-length argument dictionary.
         """
 
