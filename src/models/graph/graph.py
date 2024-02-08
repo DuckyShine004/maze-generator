@@ -1,14 +1,10 @@
-import random
 import pygame
-
-from collections import deque
 
 from src.models.objects.cell import Cell
 
 from src.algorithms.depth_first_search import DepthFirstSearch
 from src.algorithms.binary_search import BinarySearch
 
-from src.utilities.utility import Utility
 
 from src.constants.constants import (
     MAZE_WIDTH,
@@ -91,18 +87,9 @@ class Graph:
             case "dfs":
                 algorithm = DepthFirstSearch(self)
             case "binary":
-                path = self.binary()
+                algorithm = BinarySearch(self)
 
         self.generator = algorithm.get_generator()
-
-    def binary(self):
-        path = deque()
-
-        for x in range(MAZE_WIDTH):
-            for y in range(MAZE_HEIGHT):
-                ...
-
-        return path
 
     def render(self, surface):
         for row in self.cells:
