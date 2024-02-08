@@ -38,8 +38,8 @@
         },
         {
             "id": "btn3",
-            "start": [2330, 910],
-            "target": [1580, 910],
+            "start": [2305, 910],
+            "target": [1555, 910],
             "images": {
                 "default": "assets/ui/buttons/button0.png"
             },
@@ -66,8 +66,8 @@
         },
         {
             "id": "btn5",
-            "start": [2330, 100],
-            "target": [1580, 100],
+            "start": [2305, 100],
+            "target": [1555, 100],
             "images": {
                 "default": "assets/ui/buttons/button0.png"
             },
@@ -80,8 +80,8 @@
         },
         {
             "id": "btn6",
-            "start": [1980, 240],
-            "target": [1230, 240],
+            "start": [1980, 205],
+            "target": [1230, 205],
             "images": {
                 "default": "assets/ui/buttons/button0.png"
             },
@@ -94,8 +94,8 @@
         },
         {
             "id": "btn7",
-            "start": [2330, 240],
-            "target": [1580, 240],
+            "start": [2305, 205],
+            "target": [1555, 205],
             "images": {
                 "default": "assets/ui/buttons/button0.png"
             },

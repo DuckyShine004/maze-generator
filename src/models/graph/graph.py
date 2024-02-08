@@ -65,7 +65,6 @@ class Graph:
             self.previous_time = None
 
     def update(self):
-        print(self.delay)
         time = pygame.time.get_ticks()
         delta_time = None
 
