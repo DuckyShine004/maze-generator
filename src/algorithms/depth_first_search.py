@@ -12,6 +12,9 @@ from src.constants.constants import MAZE_WIDTH, MAZE_HEIGHT
 class DepthFirstSearch(Algorithm):
     def __init__(self, graph):
         super().__init__(graph)
+
+        self.path = deque()
+
         self.initialize()
 
     def initialize(self):
@@ -25,9 +28,9 @@ class DepthFirstSearch(Algorithm):
             neighbor = None
 
             visited[node[0]][node[1]] = True
-            random.shuffle(self.directions_4)
+            random.shuffle(self.directions["4"])
 
-            for offset_x, offset_y in self.directions_4:
+            for offset_x, offset_y in self.directions["4"]:
                 neighbor = (node[0] + offset_x, node[1] + offset_y)
 
                 if not self.is_node_valid(neighbor, visited):
@@ -42,6 +45,30 @@ class DepthFirstSearch(Algorithm):
                 stack.append(neighbor)
             else:
                 stack.pop()
+
+    def get_generator(self):
+        path_length = len(self.path)
+
+        for path_index in range(1, path_length):
+            previous = self.path[path_index - 1]
+            current = self.path[path_index]
+
+            self.graph.cells[previous[0]][previous[1]].is_head_at_current_cell = False
+            self.graph.cells[current[0]][current[1]].is_head_at_current_cell = True
+
+            if current[0] - previous[0] == 1:
+                self.remove_wall(previous, current, 1)
+
+            if current[0] - previous[0] == -1:
+                self.remove_wall(previous, current, 3)
+
+            if current[1] - previous[1] == 1:
+                self.remove_wall(previous, current, 2)
+
+            if current[1] - previous[1] == -1:
+                self.remove_wall(previous, current, 0)
+
+            yield
 
     def is_node_valid(self, node, visited):
         x, y = node
