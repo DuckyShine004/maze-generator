@@ -15,7 +15,7 @@ class Cell(object):
         self.y = y
 
         self.walls = self.get_walls(x, y, is_right_most_wall, is_bottom_most_wall)
-        self.is_head_at_current_cell = False
+        self.is_color_current_cell = False
 
     def get_walls(self, x, y, is_right_most_wall, is_bottom_most_wall):
         horizontal_wall_offset = VERTICAL_WALL_SIZE[1] - HORIZONTAL_WALL_SIZE[1]
@@ -28,14 +28,14 @@ class Cell(object):
 
         return [top_wall, right_wall, bottom_wall, left_wall]
 
-    def render_head(self, surface):
-        if not self.is_head_at_current_cell:
+    def render_cell_color(self, surface):
+        if not self.is_color_current_cell:
             return
 
         pygame.draw.rect(surface, CELL_COLOR, pygame.Rect(self.x, self.y, *CELL_SIZE))
 
     def render(self, surface):
-        self.render_head(surface)
+        self.render_cell_color(surface)
 
         for wall, is_wall_visible in self.walls:
             if not is_wall_visible:

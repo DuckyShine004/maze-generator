@@ -53,8 +53,8 @@ class DepthFirstSearch(Algorithm):
             previous = self.path[path_index - 1]
             current = self.path[path_index]
 
-            self.graph.cells[previous[0]][previous[1]].is_head_at_current_cell = False
-            self.graph.cells[current[0]][current[1]].is_head_at_current_cell = True
+            self.color_node(previous, False)
+            self.color_node(current, True)
 
             if current[0] - previous[0] == 1:
                 self.remove_wall(previous, current, 1)

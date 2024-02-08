@@ -6,6 +6,12 @@ class Algorithm:
         self.graph = graph
         self.directions = dict(DIRECTIONS)
 
+    def color_node(self, node, is_color):
+        if not node:
+            return
+
+        self.graph.cells[node[0]][node[1]].is_color_current_cell = is_color
+
     def remove_wall(self, node, neighbor, direction):
         match direction:
             case 0:

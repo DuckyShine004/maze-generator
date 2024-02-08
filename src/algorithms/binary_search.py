@@ -7,6 +7,7 @@ from src.constants.constants import MAZE_WIDTH, MAZE_HEIGHT
 class BinarySearch(Algorithm):
     def __init__(self, graph):
         super().__init__(graph)
+        self.current_neighbor = None
 
     def get_generator(self):
         previous = None
@@ -23,19 +24,21 @@ class BinarySearch(Algorithm):
 
                 if self.is_node_valid(neighbor):
                     self.handle_removal_of_wall((x, y), neighbor)
+                    self.handle_color_of_current_neighbor(neighbor)
                     is_removed = True
                     yield
 
                 if not is_removed:
                     yield
 
+    def handle_color_of_current_neighbor(self, neighbor):
+        self.current_neighbor = neighbor
+        self.color_node(self.current_neighbor, True)
+
     def handle_color_of_cells(self, previous, current):
-        self.graph.cells[current[0]][current[1]].is_head_at_current_cell = True
-
-        if not previous:
-            return
-
-        self.graph.cells[previous[0]][previous[1]].is_head_at_current_cell = False
+        self.color_node(previous, False)
+        self.color_node(current, True)
+        self.color_node(self.current_neighbor, False)
 
     def handle_removal_of_wall(self, node, neighbor):
         if neighbor[0] - node[0] == 1:
