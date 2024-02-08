@@ -11,10 +11,13 @@ from src.constants.constants import SURFACE_COLOR, FPS, WIDTH, HEIGHT, MENU
 
 
 class App:
-    """The module for keeping the application running, or the module which defines
+    """The class for keeping the application running, or the module which defines
     the lifecycle of the application.
 
     Attributes:
+        surface (pygame.Surface): The display surface.
+        graph (Graph): Singleton instance of graph.
+        ui (UI): Singleton instance of ui.
         event (pygame.Event): The current event.
         is_running (bool): Is the application running.
     """
