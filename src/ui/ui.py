@@ -121,7 +121,8 @@ class UI:
         """Renders all user interface components.
 
         Args:
-            surface (pygame.Surface): The surface for elements to be rendered on to.
+            surface (pygame.Surface): The surface for elements to be
+            rendered on to.
         """
 
         for element in self.elements:
