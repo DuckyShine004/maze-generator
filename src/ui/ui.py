@@ -8,6 +8,7 @@ from pygame.constants import SYSTEM_CURSOR_ARROW, SYSTEM_CURSOR_HAND
 
 from src.ui.button import Button
 from src.ui.slider import Slider
+from src.ui.element import Element
 from src.ui.container import Container
 
 from src.utilities.utility import Utility
@@ -36,7 +37,7 @@ class UI:
 
         self.app: "App" = app
         self.data: Dict[str, Any] = Utility.get_json_data(path)
-        self.elements: List[Any] = []
+        self.elements: List[Element] = []
 
         self.initialize()
 
