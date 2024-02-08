@@ -10,16 +10,22 @@ class Kruskal(Algorithm):
         super().__init__(graph)
 
         self.nodes = [(x, y) for x in range(MAZE_WIDTH) for y in range(MAZE_HEIGHT)]
+        self.union_find = UnionFind(MAZE_WIDTH * MAZE_HEIGHT)
+        self.current_neighbor = None
+
         random.shuffle(self.nodes)
 
-        self.union_find = UnionFind(MAZE_WIDTH * MAZE_HEIGHT)
-
     def get_generator(self):
+        previous = None
+
         while self.nodes:
             node = self.nodes.pop()
             neighbor = None
 
+            self.handle_color_of_cells(previous, node)
+
             random.shuffle(self.directions["4"])
+            previous = node
 
             for offset_x, offset_y in self.directions["4"]:
                 neighbor = (node[0] + offset_x, node[1] + offset_y)
@@ -32,11 +38,29 @@ class Kruskal(Algorithm):
 
             if neighbor:
                 self.remove_wall(node, neighbor)
+                self.handle_color_of_current_neighbor(neighbor)
+
+            yield
+
+        self.uncolor_remaining_cells(previous)
 
     def get_index(self, node):
         x, y = node
 
         return x + (y * MAZE_WIDTH)
+
+    def handle_color_of_cells(self, previous, current):
+        self.color_node(previous, False)
+        self.color_node(current, True)
+        self.color_node(self.current_neighbor, False)
+
+    def handle_color_of_current_neighbor(self, neighbor):
+        self.current_neighbor = neighbor
+        self.color_node(self.current_neighbor, True)
+
+    def uncolor_remaining_cells(self, node):
+        self.color_node(node, False)
+        self.color_node(self.current_neighbor, False)
 
     def is_node_valid(self, node, neighbor):
         x, y = neighbor
