@@ -85,10 +85,10 @@
             "images": {
                 "default": "assets/ui/buttons/button0.png"
             },
-            "text": "KRUSKALS",
+            "text": "KRUSKAL",
             "font_path": "assets/fonts/default.ttf",
             "font_size": 50,
-            "type": "kruskals",
+            "type": "kruskal",
             "speed": 20,
             "z-buffer": 1
         },

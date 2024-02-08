@@ -56,17 +56,7 @@ class DepthFirstSearch(Algorithm):
             self.color_node(previous, False)
             self.color_node(current, True)
 
-            if current[0] - previous[0] == 1:
-                self.remove_wall(previous, current, 1)
-
-            if current[0] - previous[0] == -1:
-                self.remove_wall(previous, current, 3)
-
-            if current[1] - previous[1] == 1:
-                self.remove_wall(previous, current, 2)
-
-            if current[1] - previous[1] == -1:
-                self.remove_wall(previous, current, 0)
+            self.remove_wall(previous, current)
 
             yield
 

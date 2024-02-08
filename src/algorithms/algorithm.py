@@ -12,7 +12,24 @@ class Algorithm:
 
         self.graph.cells[node[0]][node[1]].is_color_current_cell = is_color
 
-    def remove_wall(self, node, neighbor, direction):
+    def get_direction(self, node, neighbor):
+        if neighbor[0] - node[0] == 1:
+            return 1
+
+        if neighbor[0] - node[0] == -1:
+            return 3
+
+        if neighbor[1] - node[1] == 1:
+            return 2
+
+        if neighbor[1] - node[1] == -1:
+            return 0
+
+        return -1
+
+    def remove_wall(self, node, neighbor):
+        direction = self.get_direction(node, neighbor)
+
         match direction:
             case 0:
                 self.graph.cells[node[0]][node[1]].walls[0][1] = False
@@ -22,3 +39,5 @@ class Algorithm:
                 self.graph.cells[neighbor[0]][neighbor[1]].walls[0][1] = False
             case 3:
                 self.graph.cells[node[0]][node[1]].walls[3][1] = False
+            case _:
+                pass
