@@ -23,7 +23,7 @@ class Moveable:
         target (tuple): The target position of the component.
     """
 
-    def __init__(self, element, **kwargs) -> None:
+    def __init__(self, element: "Element", **kwargs) -> None:
         """Initializes the moveable component object.
 
         Args:
@@ -31,15 +31,15 @@ class Moveable:
             **kwargs: Keyworded, variable-length argument dictionary.
         """
 
-        self.element = element
+        self.element: "Element" = element
 
         self.start: Tuple[float, float] = kwargs["start"]
         self.target: Tuple[float, float] = kwargs["target"]
         self.speed: float = kwargs["speed"]
         self.children: List[str] = kwargs.get("children", [])
 
-        self.is_moving = False
-        self.is_moving_to_target = False
+        self.is_moving: bool = False
+        self.is_moving_to_target: bool = False
 
     def move_children(self) -> None:
         """Move all child components."""
