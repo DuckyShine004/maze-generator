@@ -15,7 +15,7 @@ class UnionFind:
         reps (list): List of disjoint sets.
     """
 
-    def __init__(self, n: int):
+    def __init__(self, n: int) -> None:
         """Initializes the union find datastructure.
 
         Args:
