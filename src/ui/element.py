@@ -21,8 +21,8 @@ class Element:
         moveable (Moveable): Moveable instance.
         text (Text): Text instance.
         type (str): The type of element.
-        visual (TYPE): Visual instance.
-        z_buffer (TYPE): Defines which elements are rendered first.
+        visual (Visual): Visual instance.
+        z_buffer (int): Defines which elements are rendered first.
     """
 
     def __init__(self, app: "App", **kwargs) -> None:
