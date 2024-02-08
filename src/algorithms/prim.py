@@ -33,7 +33,7 @@ class Prim(Algorithm):
         self.current_neighbor: Tuple[int, int] = None
 
     def get_generator(self) -> None:
-        """Returns the generator for the Prim's algorithm.
+        """Returns the generator for Prim's algorithm.
 
         Yields:
             None: Nothing is yielded.

@@ -10,7 +10,7 @@ from src.constants.constants import MAZE_WIDTH, MAZE_HEIGHT
 
 
 class BinarySearch(Algorithm):
-    """This class initializes the Prim object. A maze, believe it or not,
+    """This class initializes the Binary object. A maze, believe it or not,
     can be generated with randomized Binary Search algorithm.
 
     Attributes:
