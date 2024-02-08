@@ -102,7 +102,7 @@
             "text": "PRIMS",
             "font_path": "assets/fonts/default.ttf",
             "font_size": 50,
-            "type": "prims",
+            "type": "prim",
             "speed": 20,
             "z-buffer": 1
         },
