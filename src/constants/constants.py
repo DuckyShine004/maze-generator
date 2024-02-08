@@ -1,3 +1,30 @@
+"""This module contains application constants.
+
+Attributes:
+    CELL_COLOR (tuple): The cell's color.
+    CELL_OFFSET (int): The cell offset.
+    CELL_SIZE (tuple): The size of each cell.
+    DIRECTIONS (TYPE): All directions types.
+    FONT_COLOR (tuple): The font's color.
+    FONT_SIZE (int): The font's size.
+    FPS (int): The frames per second.
+    GRAPH_ALGORITHM (str): The default graph traversal algorithm.
+    GRAPH_DELAY (int): The animation delay.
+    GRAPH_INITIAL_DELAY (int): The initial animation delay.
+    HEIGHT (int): The display's height.
+    HORIZONTAL_WALL_SIZE (TYPE): The length of a horizontal wall.
+    MAZE_HEIGHT (int): The height of the maze.
+    MAZE_WIDTH (int): The width of the maze.
+    MENU (str): The path to the menu JSON file.
+    SURFACE_COLOR (tuple): The color of the background.
+    VERTICAL_WALL_SIZE (TYPE): The length of a vertical wall.
+    WALL_COLOR (tuple): The color of each wall.
+    WALL_OFFSET (int): Wall offset.
+    WALL_SIZE_1 (int): Size of wall.
+    WALL_SIZE_2 (int): Size of wall.
+    WIDTH (int): The display's width.
+"""
+
 # DISPLAY
 SURFACE_COLOR = (160, 160, 160)
 WIDTH = 1920
