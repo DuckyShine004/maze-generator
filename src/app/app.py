@@ -11,7 +11,7 @@ from src.constants.constants import SURFACE_COLOR, FPS, WIDTH, HEIGHT, MENU
 
 
 class App:
-    """The class for keeping the application running, or the module which defines
+    """The module for keeping the application running, or the module which defines
     the lifecycle of the application.
 
     Attributes:
