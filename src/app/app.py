@@ -2,6 +2,7 @@ import pygame
 
 from src.ui.ui import UI
 from src.models.graph.graph import Graph
+
 from src.constants.constants import SURFACE_COLOR, WIDTH, HEIGHT, MENU
 
 

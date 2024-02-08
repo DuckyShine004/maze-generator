@@ -7,7 +7,6 @@ from src.algorithms.binary_search import BinarySearch
 from src.algorithms.kruskal import Kruskal
 from src.algorithms.prim import Prim
 
-
 from src.constants.constants import (
     MAZE_WIDTH,
     MAZE_HEIGHT,

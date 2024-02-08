@@ -1,6 +1,7 @@
 import random
 
 from src.algorithms.algorithm import Algorithm
+
 from src.constants.constants import MAZE_WIDTH, MAZE_HEIGHT
 
 

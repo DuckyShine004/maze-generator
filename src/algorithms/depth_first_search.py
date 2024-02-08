@@ -2,9 +2,9 @@ import random
 
 from collections import deque
 
-from src.utilities.utility import Utility
-
 from src.algorithms.algorithm import Algorithm
+
+from src.utilities.utility import Utility
 
 from src.constants.constants import MAZE_WIDTH, MAZE_HEIGHT
 
