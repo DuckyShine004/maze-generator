@@ -10,6 +10,10 @@ Maze generator made with pygame. Includes a variety of algorithms to generate a 
 </p>
 
 ## Snapshots
+<p align="center">
+  <img src="https://raw.githubusercontent.com/DuckyShine004/maze-generator/main/.snapshots/ui.png" alt="ui.png"/>
+  <img src="https://raw.githubusercontent.com/DuckyShine004/maze-generator/main/.snapshots/maze.png" alt="maze.png"/>
+</p>
 
 ## Getting Started
 
