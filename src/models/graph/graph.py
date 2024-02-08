@@ -5,6 +5,7 @@ from src.models.objects.cell import Cell
 from src.algorithms.depth_first_search import DepthFirstSearch
 from src.algorithms.binary_search import BinarySearch
 from src.algorithms.kruskal import Kruskal
+from src.algorithms.prim import Prim
 
 
 from src.constants.constants import (
@@ -91,6 +92,8 @@ class Graph:
                 algorithm = BinarySearch(self)
             case "kruskal":
                 algorithm = Kruskal(self)
+            case "prim":
+                algorithm = Prim(self)
 
         self.generator = algorithm.get_generator()
 
