@@ -23,7 +23,7 @@ class BinarySearch(Algorithm):
                 previous = (x, y)
 
                 if self.is_node_valid(neighbor):
-                    self.handle_removal_of_wall((x, y), neighbor)
+                    self.remove_wall((x, y), neighbor)
                     self.handle_color_of_current_neighbor(neighbor)
                     is_removed = True
                     yield
@@ -39,13 +39,6 @@ class BinarySearch(Algorithm):
         self.color_node(previous, False)
         self.color_node(current, True)
         self.color_node(self.current_neighbor, False)
-
-    def handle_removal_of_wall(self, node, neighbor):
-        if neighbor[0] - node[0] == 1:
-            self.remove_wall(node, neighbor, 1)
-
-        if neighbor[1] - node[1] == 1:
-            self.remove_wall(node, neighbor, 2)
 
     def is_node_valid(self, node):
         x, y = node
