@@ -87,8 +87,6 @@ class Graph:
         if not self.generator:
             return
 
-        print(type(self.generator))
-
         try:
             next(self.generator)
             self.previous_time = time

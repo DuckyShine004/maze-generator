@@ -1,18 +1,60 @@
+"""This module allows for generation of a maze."""
+
+from typing import TYPE_CHECKING, List, Dict, Tuple
+
 from src.constants.constants import DIRECTIONS
+
+if TYPE_CHECKING:
+    from src.models.graph.graph import Graph
 
 
 class Algorithm:
-    def __init__(self, graph):
-        self.graph = graph
-        self.directions = dict(DIRECTIONS)
+    """This class initializes the algorithm component. An algorithm is
+    any class that involved generating a maze.
 
-    def color_node(self, node, is_color):
+    Attributes:
+        directions (dict): Dictionary of directions.
+        graph (Graph): The singleton graph object.
+    """
+
+    def __init__(self, graph: "Graph") -> None:
+        """Initialize the algorithm object.
+
+        Args:
+            graph (Graph): The singleton graph object.
+        """
+
+        self.graph: "Graph" = graph
+        self.directions: Dict[str, List[Tuple[int, int]]] = dict(DIRECTIONS)
+
+    def color_node(self, node: Tuple[int, int], is_color: bool) -> None:
+        """Color/uncolor the node at the input node's position.
+
+        Args:
+            node (Tuple[int, int]): The current node's position.
+            is_color (bool): Should we color the input node.
+
+        Returns:
+            None: Nothing is being returned.
+        """
+
         if not node:
             return
 
         self.graph.cells[node[0]][node[1]].is_color_current_cell = is_color
 
-    def get_direction(self, node, neighbor):
+    def get_direction(self, node: Tuple[int, int], neighbor: Tuple[int, int]) -> int:
+        """Get the direction between two nodes. In this case, between the
+        current node and the neighbor node.
+
+        Args:
+            node (Tuple[int, int]): The current position of the node.
+            neighbor (Tuple[int, int]): The neighbor's position.
+
+        Returns:
+            int: Return the direction.
+        """
+
         if neighbor[0] - node[0] == 1:
             return 1
 
@@ -27,7 +69,14 @@ class Algorithm:
 
         return -1
 
-    def remove_wall(self, node, neighbor):
+    def remove_wall(self, node: Tuple[int, int], neighbor: Tuple[int, int]) -> None:
+        """Remove the wall between the node and the neighbor.
+
+        Args:
+            node (Tuple[int, int]): The current position of the node.
+            neighbor (Tuple[int, int]): The neighbor's position.
+        """
+
         direction = self.get_direction(node, neighbor)
 
         match direction:
