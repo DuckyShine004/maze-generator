@@ -23,10 +23,12 @@ Attributes:
     WALL_SIZE_1 (int): Size of wall.
     WALL_SIZE_2 (int): Size of wall.
     WIDTH (int): The display's width.
+    CAPTION (str): The window's title.
 """
 
 # DISPLAY
 SURFACE_COLOR = (160, 160, 160)
+CAPTION = "Maze Generator"
 WIDTH = 1920
 HEIGHT = 1080
 FPS = 60
