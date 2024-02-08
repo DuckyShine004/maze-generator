@@ -1,11 +1,12 @@
 import pygame
 
-from pygame.constants import SYSTEM_CURSOR_ARROW, SYSTEM_CURSOR_HAND
-
-from src.utilities.utility import Utility
 from src.ui.button import Button
 from src.ui.slider import Slider
 from src.ui.container import Container
+
+from src.utilities.utility import Utility
+
+from pygame.constants import SYSTEM_CURSOR_ARROW, SYSTEM_CURSOR_HAND
 
 
 class UI:

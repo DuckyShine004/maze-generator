@@ -4,9 +4,6 @@ from src.ui.sub.moveable import Moveable
 from src.ui.sub.visual import Visual
 from src.ui.sub.text import Text
 
-from src.utilities.utility import Utility
-from src.constants.constants import FONT_COLOR, FONT_SIZE
-
 
 class Element(object):
     def __init__(self, app, **kwargs):

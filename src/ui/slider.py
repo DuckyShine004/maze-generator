@@ -1,5 +1,7 @@
 import pygame
+
 from src.ui.element import Element
+
 from src.utilities.utility import Utility
 
 from src.constants.constants import GRAPH_DELAY

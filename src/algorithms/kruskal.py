@@ -1,4 +1,5 @@
 import random
+
 from src.algorithms.algorithm import Algorithm
 from src.algorithms.union_find import UnionFind
 
