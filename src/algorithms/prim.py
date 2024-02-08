@@ -21,9 +21,8 @@ class Prim(Algorithm):
         previous = None
 
         while frontier:
-            random.shuffle(frontier)
-
-            node = frontier.pop()
+            index = random.randint(0, len(frontier) - 1)
+            node = frontier.pop(index)
             neighbor = None
 
             if visited[node[0]][node[1]]:
