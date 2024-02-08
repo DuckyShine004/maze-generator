@@ -1,6 +1,6 @@
 """This module allows for maze generation with randomized Kruskal's algorithm."""
 
-from typing import List, Tuple
+from typing import TYPE_CHECKING, List, Tuple
 
 import random
 
@@ -8,6 +8,9 @@ from src.algorithms.algorithm import Algorithm
 from src.algorithms.union_find import UnionFind
 
 from src.constants.constants import MAZE_HEIGHT, MAZE_WIDTH
+
+if TYPE_CHECKING:
+    from src.models.graph.graph import Graph
 
 
 class Kruskal(Algorithm):
@@ -20,7 +23,7 @@ class Kruskal(Algorithm):
         union_find (UnionFind): The union find datastructure.
     """
 
-    def __init__(self, graph) -> None:
+    def __init__(self, graph: "Graph") -> None:
         """Initializes the Kruskal's algorithm object.
 
         Args:
