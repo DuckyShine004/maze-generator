@@ -11,7 +11,7 @@ from src.constants.constants import (
     MAZE_WIDTH,
     MAZE_HEIGHT,
     CELL_OFFSET,
-    GRAPH_DELAY,
+    GRAPH_INITIAL_DELAY,
     GRAPH_ALGORITHM,
 )
 
@@ -33,7 +33,7 @@ class Graph:
 
         self.generator = None
         self.previous_time = None
-        self.delay = GRAPH_DELAY
+        self.delay = GRAPH_INITIAL_DELAY
         self.algorithm = GRAPH_ALGORITHM
 
     def reset(self):

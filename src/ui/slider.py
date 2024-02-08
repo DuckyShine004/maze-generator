@@ -1,7 +1,8 @@
 import pygame
-
 from src.ui.element import Element
 from src.utilities.utility import Utility
+
+from src.constants.constants import GRAPH_DELAY
 
 
 class Slider(Element):
@@ -9,6 +10,7 @@ class Slider(Element):
         super().__init__(app, **kwargs)
 
         self.width = kwargs["width"]
+        self.length = kwargs["length"]
         self.radius = self.visual.rect.w // 2
 
         self.min = self.moveable.target[0]
@@ -22,6 +24,8 @@ class Slider(Element):
         self.visual.rect.x = Utility.clamp(position, self.min, self.max)
         self.moveable.start[0] = self.visual.rect.x + self.width
         self.moveable.target[0] = self.visual.rect.x
+
+        self.update_delay()
 
     def on_click(self, event):
         if self.moveable.is_moving:
@@ -44,6 +48,10 @@ class Slider(Element):
             return
 
         self.move_slider(event)
+
+    def update_delay(self):
+        percentage = (self.visual.rect.x - self.min) / self.length
+        self.app.graph.delay = percentage * GRAPH_DELAY
 
     def update(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN:
