@@ -9,8 +9,8 @@ Attributes:
     FONT_SIZE (int): The font's size.
     FPS (int): The frames per second.
     GRAPH_ALGORITHM (str): The default graph traversal algorithm.
-    GRAPH_DELAY (int): The animation delay.
-    GRAPH_INITIAL_DELAY (int): The initial animation delay.
+    GRAPH_DELAY (float): The animation delay.
+    GRAPH_INITIAL_DELAY (float): The initial animation delay.
     HEIGHT (int): The display's height.
     HORIZONTAL_WALL_SIZE (TYPE): The length of a horizontal wall.
     MAZE_HEIGHT (int): The height of the maze.

@@ -41,12 +41,12 @@ class Slider(Element):
         self.length: float = kwargs["length"]
         self.radius: float = self.visual.rect.w / 2
 
-        self.min: float = self.moveable.target[0]
-        self.max: float = self.min + kwargs["length"]
+        self.min: int = self.moveable.target[0]
+        self.max: int = self.min + kwargs["length"]
 
         self.is_dragging: bool = False
 
-    def move_slider(self, event: Optional[pygame.Event]) -> None:
+    def move_slider(self, event: Optional[pygame.event.Event]) -> None:
         """Moves the slider's position relative to the cursor's position.
 
         Args:
@@ -61,7 +61,7 @@ class Slider(Element):
 
         self.update_delay()
 
-    def on_click(self, event: Optional[pygame.Event]) -> None:
+    def on_click(self, event: Optional[pygame.event.Event]) -> None:
         """Handles the clicking of the slider component.
 
         Args:
@@ -79,7 +79,7 @@ class Slider(Element):
 
         self.is_dragging = True
 
-    def on_drag(self, event: Optional[pygame.Event]) -> None:
+    def on_drag(self, event: Optional[pygame.event.Event]) -> None:
         """Handles the dragging of the slider component.
 
         Args:
@@ -107,7 +107,7 @@ class Slider(Element):
         percentage = (self.visual.rect.x - self.min) / self.length
         self.app.graph.delay = percentage * GRAPH_DELAY
 
-    def update(self, event: Optional[pygame.Event]) -> None:
+    def update(self, event: Optional[pygame.event.Event]) -> None:
         """Updates the slider component.
 
         Args:

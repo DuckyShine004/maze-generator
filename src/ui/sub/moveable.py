@@ -33,8 +33,8 @@ class Moveable:
 
         self.element: "Element" = element
 
-        self.start: Tuple[float, float] = kwargs["start"]
-        self.target: Tuple[float, float] = kwargs["target"]
+        self.start: Tuple[int, int] = kwargs["start"]
+        self.target: Tuple[int, int] = kwargs["target"]
         self.speed: float = kwargs["speed"]
         self.children: List[str] = kwargs.get("children", [])
 
