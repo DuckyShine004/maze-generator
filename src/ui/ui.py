@@ -106,7 +106,7 @@ class UI:
 
         pygame.mouse.set_cursor(SYSTEM_CURSOR_ARROW)
 
-    def update(self, event: Optional[pygame.Event]) -> None:
+    def update(self, event: Optional[pygame.event.Event]) -> None:
         """Updates the user interface.
 
         Args:

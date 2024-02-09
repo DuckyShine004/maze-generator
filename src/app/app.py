@@ -30,7 +30,7 @@ class App:
         self.graph: Graph = Graph()
         self.ui: UI = UI(self, MENU)
 
-        self.event: Optional[pygame.Event] = None
+        self.event: Optional[pygame.event.Event] = None
         self.is_running: bool = True
 
     def run(self) -> None:
@@ -71,7 +71,7 @@ class App:
 
             self.handle_keyboard_events(event)
 
-    def handle_keyboard_events(self, event: pygame.Event) -> None:
+    def handle_keyboard_events(self, event: pygame.event.Event) -> None:
         """Handle keyboard events.
 
         Args:

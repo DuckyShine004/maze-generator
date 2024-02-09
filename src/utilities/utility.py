@@ -64,7 +64,7 @@ class Utility:
         return images
 
     @staticmethod
-    def clamp(value: float, _min: float, _max: float) -> float:
+    def clamp(value: int, _min: int, _max: int) -> int:
         """Clamps the input value between _min and _max.
 
         Args:

@@ -25,7 +25,7 @@ class Button(Element):
 
         super().__init__(app, **kwargs)
 
-    def update(self, event: Optional[pygame.Event]) -> None:
+    def update(self, event: Optional[pygame.event.Event]) -> None:
         """Updates the button component.
 
         Args:
@@ -37,7 +37,7 @@ class Button(Element):
 
         self.on_slide()
 
-    def on_click(self, event: Optional[pygame.Event]) -> None:
+    def on_click(self, event: Optional[pygame.event.Event]) -> None:
         """Handles the clicking of the button component.
 
         Args:

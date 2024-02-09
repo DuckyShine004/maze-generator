@@ -26,7 +26,7 @@ class Container(Element):
 
         super().__init__(app, **kwargs)
 
-    def update(self, _event: Optional[pygame.Event]) -> None:
+    def update(self, _event: Optional[pygame.event.Event]) -> None:
         """Updates the container component.
 
         Args:
